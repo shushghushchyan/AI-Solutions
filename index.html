@@ -146,7 +146,7 @@
 </div>
 
 
-  <div class="swing-target pordznakan flex flex-col child justify-center w-full sm:w-1/3 max-w-[400px] h-auto gap-[15px] rounded-[30px] bg-[#f2f2f2] p-[20px] overflow-hidden self-end">
+  <div class="swing-target flex flex-col child justify-center w-full sm:w-1/3  h-[340px] gap-[15px] rounded-[30px] bg-[#f2f2f2] p-[20px] overflow-hidden self-end">
   <img 
     class="w-[48px] h-[48px] sm:w-[64px] sm:h-[64px] object-contain mx-auto" 
     src="/images/robot1.png" 
@@ -218,33 +218,43 @@
 document.addEventListener("DOMContentLoaded", function () {
   const hand = document.querySelector(".hand");
 
-  const observer = new IntersectionObserver((entries) => {
+  const handObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        hand.classList.remove("animate"); 
-        void hand.offsetWidth; 
-        hand.classList.add("animate");
+        hand.classList.remove("animate");
+        void hand.offsetWidth;
+      
+          hand.classList.add("animate");
+        
       }
     });
   }, {
-    threshold: 0.1 // 
+    threshold: 0.1
   });
 
   if (hand) {
-    observer.observe(hand);
+    handObserver.observe(hand);
   }
 });
 
-const observer = new IntersectionObserver((entries) => {
+const swingObserver = new IntersectionObserver((entries) => {
   entries.forEach(({ isIntersecting, target }) => {
-    target.classList.toggle("animate", isIntersecting);
-    target.classList.toggle("has-animated", isIntersecting);
+    if (isIntersecting) {
+      setTimeout(() => {
+        target.classList.add("animate");
+        target.classList.add("has-animated");
+      }, 500); 
+    } else {
+      target.classList.remove("animate");
+      target.classList.remove("has-animated");
+    }
   });
 }, {
   threshold: 0.6,
 });
 
-document.querySelectorAll(".swing-target").forEach(target => observer.observe(target));
+document.querySelectorAll(".swing-target").forEach(target => swingObserver.observe(target));
+
 
 </script>
 
