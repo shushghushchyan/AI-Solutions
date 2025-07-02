@@ -1,0 +1,117 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: white;
+  font-family: "Montserrat";
+  
+}
+
+@keyframes swingIn3D {
+  0% {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  30% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  45% {
+    transform: rotateX(-20deg);
+  }
+  60% {
+    transform: rotateX(15deg);
+  }
+  75% {
+    transform: rotateX(-8deg);
+  }
+  85% {
+    transform: rotateX(4deg);
+  }
+  92% {
+    transform: rotateX(-2deg);
+  }
+  97% {
+    transform: rotateX(1deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.pordznakan {
+  perspective: 1000px;
+}
+
+.child {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  width: 300px;
+  height: 100px;
+}
+
+.child.animate {
+  animation: swingIn3D 4s ease-out forwards;
+}
+
+.hand {
+  position: relative;
+  opacity: 0;
+  transform: translateX(30vw);
+  transition: transform 1s ease, opacity 1s ease;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+.hand.animate {
+  animation: handmand 4s ease forwards;
+}
+
+@keyframes handmand {
+  from {
+    transform: translateX(30vw);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes swing {
+  0% {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  30% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  45% {
+    transform: rotateX(-20deg);
+    opacity: 0;
+  }
+  97% {
+    transform: rotateX(1deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.animate {
+  animation: swing 3s ease-in-out;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
